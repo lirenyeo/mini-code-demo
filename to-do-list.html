@@ -1,0 +1,40 @@
+<style>
+  body { background: #1c2727; color: white; }
+</style>
+
+<input id="input" type="text">
+<button disabled id="btn">Add Task</button>
+
+<h4>My Todo List:</h4>
+<ul id="list"></ul>
+
+<script>
+const input = document.getElementById('input')
+const btn = document.getElementById('btn')
+const list = document.getElementById('list')
+
+input.oninput = function() {
+  if (input.value.length > 3) {
+    btn.disabled = false
+  } else {
+    btn.disabled = true
+  }
+}
+
+btn.onclick = function() {
+ if (input.value.length > 0) {
+  const newTask = document.createElement('li')
+   newTask.innerText = input.value
+   list.appendChild(newTask)
+
+   input.value = ''
+ }
+}
+
+list.onclick = function(event) {
+  const element = event.target
+  element.parentElement.removeChild(element)
+}
+
+
+</script>
