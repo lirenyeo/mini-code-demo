@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Number Guessing Game</title>
+    <link rel="stylesheet" href="guess.css" />
+  </head>
+  <body>
+    <svg id="start" viewBox="45 60 400 320" xmlns="http://www.w3.org/2000/svg">
+      <path
+        fill="#fff"
+        d="M 90 210 C 90 180 90 150 90 150 C 150 150 180 150 180 150 C 180 150 300 150 300 150 C 300 150 330 150 390 150 C 390 150 390 180 390 210 C 390 240 390 270 390 270 C 330 270 300 270 300 270 C 300 270 180 270 180 270 C 180 270 150 270 90 270 C 90 270 90 240 90 210"
+        mask="url(#knockout-text)"
+      ></path>
+      <mask id="knockout-text">
+        <rect width="100%" height="100%" fill="#fff" x="0" y="0" />
+        <text x="147" y="227" fill="#000">START</text>
+      </mask>
+    </svg>
+
+    <!--- M 90 210 C 90 180 90 150 150 150 C 150 150 180 150 180 150 C 180 150 300 150 300 150 C 300 150 330 150 330 150 C 390 150 390 180 390 210 C 390 240 390 270 330 270 C 330 270 300 270 300 270 C 300 270 180 270 180 270 C 180 270 150 270 150 270 C 90 270 90 240 90 210 --->
+  </body>
+  <script>
+    document.getElementById('start').onclick = startGame
+
+    function startGame() {
+      const answer = Math.floor(Math.random() * 11)
+
+      while (true) {
+        let input = prompt('Guess a number between 0 and 10:')
+        if (input == answer) {
+          alert(`Congratulations! ${input} is the correct answer!`)
+          break
+        }
+
+        if (parseInt(input) > answer) {
+          alert('Your number is too large')
+        } else if (parseInt(input) < answer) {
+          alert('Your number is too small')
+        }
+      }
+    }
+  </script>
+</html>
