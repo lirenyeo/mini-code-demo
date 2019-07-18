@@ -1,40 +1,241 @@
+<head>
+  <link
+    href="https://fonts.googleapis.com/css?family=Bitter&display=swap"
+    rel="stylesheet"
+  />
+</head>
 <style>
-  body { background: #1c2727; color: white; }
+  html {
+    box-sizing: border-box;
+  }
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+  body {
+    background: #09091f;
+    color: white;
+    font-size: 20px;
+    font-family: 'Bitter', serif;
+    letter-spacing: 1px;
+  }
+
+  #list {
+    width: 100%;
+    max-width: 495px;
+    min-height: 60px;
+    margin: auto;
+    margin-top: 1em;
+    padding: 0;
+    background: hsl(236, 32%, 26%);
+  }
+
+  #list li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    height: 60px;
+    width: 100%;
+    text-align: center;
+    line-height: 60px;
+    cursor: pointer;
+    transition: opacity 300ms linear;
+  }
+
+  #list li:hover {
+    background: #484b6f;
+  }
+
+  #list li:not(:last-child) {
+    border-bottom: solid 1px #7b7b7b;
+  }
+
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 60px;
+    padding: 2px;
+    margin: auto;
+    margin-top: 10%;
+  }
+
+  button {
+    z-index: 1;
+    position: relative;
+    font-size: inherit;
+    font-family: inherit;
+    color: white;
+    padding: 0.5em 1em;
+    outline: none;
+    border: none;
+    background-color: #fc2f70;
+    overflow: hidden;
+    transition: color 0.4s ease-in-out;
+    height: 100%;
+    width: 200px;
+    transition: .45s;
+  }
+
+  button::before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: 100%;
+    right: 100%;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background-color: #bcc1ff;
+    transform-origin: center;
+    transform: translate3d(50%, -50%, 0) scale3d(0, 0, 0);
+    transition: transform 0.45s ease-in-out;
+  }
+
+  button:hover {
+    cursor: pointer;
+    color: #161616;
+  }
+
+  button:hover::before {
+    transform: translate3d(50%, -50%, 0) scale3d(15, 15, 15);
+  }
+
+  button:disabled {
+    background: #464646;
+    text-decoration: line-through;
+  }
+
+  input {
+    color: white;
+    font-size: inherit;
+    font-family: inherit;
+    background-color: hsl(236, 32%, 26%);
+    padding: 0.35em 0.45em;
+    border: 1px solid transparent;
+    transition: background-color 0.3s ease-in-out;
+    width: 100%;
+    height: 100%;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  input::placeholder {
+    color: hsla(0, 0%, 100%, 0.6);
+  }
+
+  span {
+    position: absolute;
+    background-color: #fc2f70;
+    transform-origin: center;
+    transition: transform 0.5s ease;
+  }
+
+  .bottom,
+  .top {
+    height: 1px;
+    left: 0;
+    right: 0;
+    transform: scaleX(0);
+  }
+
+  .left,
+  .right {
+    width: 1px;
+    top: 0;
+    bottom: 0;
+    transform: scaleY(0);
+  }
+
+  .top {
+    top: 0;
+  }
+
+  .bottom {
+    bottom: 0;
+  }
+
+  .left {
+    left: 0;
+  }
+
+  .right {
+    right: 0;
+  }
+
+  input:focus ~ .top,
+  input:focus ~ .bottom {
+    transform: scaleX(1);
+  }
+
+  input:focus ~ .left,
+  input:focus ~ .right {
+    transform: scaleY(1);
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .troll {
+    animation: spin .15s infinite;
+  }
 </style>
 
-<input id="input" type="text">
-<button disabled id="btn">Add Task</button>
+<form id="form">
+  <input id="input" type="text" placeholder="Type something..." />
+  <span class="bottom"></span>
+  <span class="right"></span>
+  <span class="top"></span>
+  <span class="left"></span>
+  <button id="btn" ype="submit" disabled id="btn">Add Task</button>
+</form>
 
-<h4>My Todo List:</h4>
-<ul id="list"></ul>
+<ul id="list">
+  <li>Eat Sleep Code Repeat</li>
+</ul>
 
 <script>
-const input = document.getElementById('input')
-const btn = document.getElementById('btn')
-const list = document.getElementById('list')
+  const input = document.getElementById('input')
+  const btn = document.getElementById('btn')
+  const list = document.getElementById('list')
+  const form = document.getElementById('form')
 
-input.oninput = function() {
-  if (input.value.length > 3) {
-    btn.disabled = false
-  } else {
-    btn.disabled = true
+  input.oninput = function() {
+    if (input.value.length > 3) {
+      btn.disabled = false
+    } else {
+      btn.disabled = true
+    }
   }
-}
 
-btn.onclick = function() {
- if (input.value.length > 0) {
-  const newTask = document.createElement('li')
-   newTask.innerText = input.value
-   list.appendChild(newTask)
+  form.onsubmit = function(e) {
+    e.preventDefault()
+    if (input.value.length > 0) {
+      const newTask = document.createElement('li')
+      newTask.innerText = input.value
+      list.appendChild(newTask)
 
-   input.value = ''
- }
-}
+      input.value = ''
+    }
 
-list.onclick = function(event) {
-  const element = event.target
-  element.parentElement.removeChild(element)
-}
+    if (list.children.length > 9) {
+      document.body.classList.add('troll')
+    }
+  }
 
-
+  list.onclick = function(event) {
+    const element = event.target
+    element.style.opacity = 0
+    setTimeout(function() {
+      element.parentElement.removeChild(element)
+    }, 300)
+  }
 </script>
