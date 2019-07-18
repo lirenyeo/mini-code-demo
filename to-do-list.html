@@ -202,40 +202,4 @@
   <li>Eat Sleep Code Repeat</li>
 </ul>
 
-<script>
-  const input = document.getElementById('input')
-  const btn = document.getElementById('btn')
-  const list = document.getElementById('list')
-  const form = document.getElementById('form')
-
-  input.oninput = function() {
-    if (input.value.length > 3) {
-      btn.disabled = false
-    } else {
-      btn.disabled = true
-    }
-  }
-
-  form.onsubmit = function(e) {
-    e.preventDefault()
-    if (input.value.length > 0) {
-      const newTask = document.createElement('li')
-      newTask.innerText = input.value
-      list.appendChild(newTask)
-
-      input.value = ''
-    }
-
-    if (list.children.length > 9) {
-      document.body.classList.add('troll')
-    }
-  }
-
-  list.onclick = function(event) {
-    const element = event.target
-    element.style.opacity = 0
-    setTimeout(function() {
-      element.parentElement.removeChild(element)
-    }, 300)
-  }
-</script>
+<script>const input=document.getElementById("input"),btn=document.getElementById("btn"),list=document.getElementById("list"),form=document.getElementById("form");input.oninput=function(){input.value.length>3?btn.disabled=!1:btn.disabled=!0},form.onsubmit=function(t){if(t.preventDefault(),input.value.length>0){const t=document.createElement("li");t.innerText=input.value,list.appendChild(t),input.value=""}list.children.length>9&&document.body.classList.add("troll")},list.onclick=function(t){const e=t.target;e.style.opacity=0,setTimeout(function(){e.parentElement.removeChild(e)},300)};</script>
