@@ -4,31 +4,53 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap"
+      rel="stylesheet"
+    />
     <title>Code Demo</title>
+    <style>
+      body {
+        font-family: 'Open Sans', sans-serif;
+      }
+
+      #container {
+        width: 100%;
+        max-width: 400px;
+        margin: auto;
+        text-align: center;
+      }
+
+      a {
+        display: block;
+        margin: .2em;
+      }
+
+      section {
+        padding: .7em;
+      }
+    </style>
   </head>
   <body>
-    <h2>Basic2 JS</h2>
-    <ul>
-      <li><a href="/number-guessing/index.html">Number Guessing Game</a></li>
-    </ul>
-    <hr />
-    <h2>With DOM Manipulation</h2>
-    <ul>
-      <li><a href="/to-do-list.html">To Do List</a></li>
-      <li><a href="/elusive-button.html">Elusive Button</a></li>
-      <li><a href="/hangman/index.html">Hangman Game</a></li>
-    </ul>
-    <hr />
-    <h2>vanillaJS to jQuery</h2>
-    <li>
-      <a href="/vanilla-jquery-matt/index.html"
-        >Disappearing Navbar & Random BG Color</a
-      >
-    </li>
-    <li><a href="/vanilla-jquery-jw/index.html">Bunch of random stuffs</a></li>
-    <li><a href="/vanilla-jquery-nic/index.html">The Disappearing Image</a></li>
-    <hr />
-    <h2>Extras:</h2>
-    <li><a href="/snake-js/index.html">Play Snake - Built With JS</a></li>
+    <div id="container">
+      <section>
+        <h2>Basic JS Exercise</h2>
+        <a href="number-guessing/index.html">Number Guessing Game</a>
+      </section>
+
+      <hr />
+      <section>
+        <h2>With DOM Manipulation</h2>
+        <a href="to-do-list/index.html">To Do List</a>
+        <a href="elusive-button/index.html">Elusive Button</a>
+        <a href="hangman/index.html">Hangman Game</a>
+      </section>
+
+      <hr />
+      <section>
+        <h2>Extras:</h2>
+        <a href="snake-js/index.html">Play Snake - Built With JS</a>
+      </section>
+    </div>
   </body>
 </html>
